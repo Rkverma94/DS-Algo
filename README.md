@@ -1,3 +1,3 @@
-# DS-Algo
-Data Structure and Algorithms code pieces
-1. Array
+<div id="header" align="center">
+  <img src="https://media.giphy.com/media/M9gbBd9nbDrOTu1Mqx/giphy.gif" width="100"/>
+</div>
