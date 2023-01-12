@@ -73,6 +73,27 @@ void LinkedList :: insertNode(int data) {
     tempNode->next = newNode;
 }
 
+void LinkedList :: deleteNode(int data) {
+    Node* temp = head;
+    if(head->data == data) {
+        temp = head;
+        head = head->next;
+        delete(temp);
+        return;
+    }
+
+    while(temp->next != NULL) {
+        if(temp->next->data == data) {
+            Node* nodeTobeDeleted = temp->next;
+            temp->next = temp->next->next;
+            nodeTobeDeleted->next = NULL;
+            delete(nodeTobeDeleted);
+            return;       
+        }
+        temp = temp->next;
+    }
+}
+
 void LinkedList :: display() {
     Node* temp = head;
     if(head == NULL) {
@@ -99,6 +120,8 @@ int main() {
     list.insertAtPosition(15,6);
     list.display();
     list.insertAtPosition(25,4);
+    list.display();
+    list.deleteNode(15);
     list.display();
     return 0;
     
