@@ -30,7 +30,23 @@ class LinkedList {
         void insertAtPosition(int, int);
         void display();
         void deleteNode(int);
+        //void deleteNodes(vector<int>);
+        void reverse();
 };
+
+void LinkedList :: reverse() {
+    //Create a temp node to store the head
+    Node* curr = head;
+    Node* next = head;
+    Node* prev = NULL;
+    while(curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
+}
 
 void LinkedList :: insertAtPosition(int data, int pos) {
     //Create a temp node to traverse till pos
@@ -74,6 +90,7 @@ void LinkedList :: insertNode(int data) {
 }
 
 void LinkedList :: deleteNode(int data) {
+    //create a temp node and assign it to
     Node* temp = head;
     if(head->data == data) {
         temp = head;
@@ -88,11 +105,41 @@ void LinkedList :: deleteNode(int data) {
             temp->next = temp->next->next;
             nodeTobeDeleted->next = NULL;
             delete(nodeTobeDeleted);
-            return;       
+            return;      
         }
         temp = temp->next;
     }
 }
+
+/*
+void LinkedList :: deleteNodes(vector<int> itemsToDelete) {
+    //Loop through vector and delete each element if it exists in the linkedlist
+    Node* tempHead = head;
+    vector<Node*> nodesTobeDeleted;
+    while(find(itemsToDelete.begin(), itemsToDelete.end(), tempHead->data) != itemsToDelete.end()) {
+        tempHead = head;
+        head = head->next;
+        nodesTobeDeleted.push_back(tempHead);
+        tempHead = head;
+        cout<<tempHead->data<<endl;
+    }
+    Node* temp = head;
+    while(temp->next != NULL) {
+        if(find(itemsToDelete.begin(), itemsToDelete.end(), temp->next->data) != itemsToDelete.end()) {
+            cout<<"in while loop : "<<temp->next->next<<endl;
+            Node* nodeTobeDeleted = temp->next;
+            if(temp->next->next == NULL) {
+                temp->next = NULL;
+            } else {
+                temp->next = temp->next->next;
+            }
+            nodeTobeDeleted->next = NULL;
+            delete(nodeTobeDeleted);
+            
+        }
+        temp = temp->next;
+    }
+}*/
 
 void LinkedList :: display() {
     Node* temp = head;
@@ -122,6 +169,10 @@ int main() {
     list.insertAtPosition(25,4);
     list.display();
     list.deleteNode(15);
+    list.display();
+    // list.deleteNodes(vector<int> {11,34,13});
+    // list.display();
+    list.reverse();
     list.display();
     return 0;
     
