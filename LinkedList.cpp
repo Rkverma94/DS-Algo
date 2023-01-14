@@ -32,6 +32,7 @@ class LinkedList {
         void deleteNode(int);
         //void deleteNodes(vector<int>);
         void reverse();
+        void sort();
 };
 
 void LinkedList :: reverse() {
@@ -140,6 +141,10 @@ void LinkedList :: deleteNodes(vector<int> itemsToDelete) {
         temp = temp->next;
     }
 }*/
+
+void LinkedList :: sort() {
+    
+}
 
 void LinkedList :: display() {
     Node* temp = head;
