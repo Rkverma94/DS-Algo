@@ -23,10 +23,10 @@ CircularQueue :: CircularQueue() {
     v.resize(size);
 }
 
-CircularQueue :: CircularQueue(int size) {
+CircularQueue :: CircularQueue(int s) {
     front = -1;
     rear = -1;
-    size = size;
+    size = s;
     v.resize(size);
 }
 
@@ -44,10 +44,11 @@ void CircularQueue :: enqueue(int data) {
         cout<<"Queue is full"<<endl;
         return;
     }
+    cout<<"size - 1 is : "<<size-1<<endl;
     if(rear == size-1 && front != 0) {
         rear = 0;
         v[rear] = data;
-        cout<<"rear is :"<<rear<<endl;
+        cout<<"rear is  0 :"<<rear<<endl;
         return;
     }
     rear++;
@@ -74,6 +75,10 @@ int CircularQueue :: dequeue() {
 }
 
 void CircularQueue :: displayCQ() {
+    cout<<endl<<endl;
+    cout<<"In Display Method"<<endl;
+    cout<<"Front : "<<front<<endl;
+    cout<<"Rear : "<<rear<<endl;
     if(front == -1) {
         cout<<"Queue is empty"<<endl;
         return;
@@ -104,6 +109,7 @@ int main() {
     cq.enqueue(78);
     cq.enqueue(88);
     cq.displayCQ();
+    cout<<endl;
     cout<<cq.dequeue()<<endl;
     cq.displayCQ();
     cout<<cq.dequeue()<<endl;
