@@ -21,6 +21,7 @@ class CircularLinkedList {
         void display();
         void initializeLastNode(Node*);
         void deleteNode(int);
+        Node* searchKey(int);
 };
 
 CircularLinkedList :: CircularLinkedList() {
@@ -31,6 +32,18 @@ void CircularLinkedList :: initializeLastNode(Node* nodeToInsert) {
     last = nodeToInsert;
     nodeToInsert->next = nodeToInsert;
     return;
+}
+
+Node* CircularLinkedList :: searchKey(int data) {
+    if(last == NULL) return NULL;
+    if(last->data == data) return last;
+    Node* tempNode = last->next;
+    while(tempNode != last) {
+        if(tempNode->data == data) return tempNode;
+        tempNode = tempNode->next;
+    }
+    cout<<"Node is found"<<endl;
+    return NULL;
 }
 
 void CircularLinkedList :: deleteNode(int data) {
@@ -134,5 +147,7 @@ int main() {
     cll.display();
     cll.deleteNode(3);
     cll.display();
+    Node* searchedNode = cll.searchKey(19);
+    cout<<searchedNode->data;
     return 0;
 }
