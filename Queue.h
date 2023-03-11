@@ -62,7 +62,7 @@ bool Queue :: isEmpty() {
     return (rearPointer == NULL || frontPointer == NULL);
 }
 
-int main() {
+/*int main() {
     Queue q;
     cout<<q.isEmpty()<<endl;
     q.enqueue(4);
@@ -71,5 +71,5 @@ int main() {
     cout<<q.dequeue()<<endl;
     cout<<q.dequeue()<<endl;
     cout<<q.isEmpty()<<endl;
-}
+}*/
 

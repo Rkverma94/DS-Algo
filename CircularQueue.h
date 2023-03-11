@@ -98,7 +98,7 @@ void CircularQueue :: displayCQ() {
     }
 }
 
-int main() {
+/*int main() {
     CircularQueue cq(6);
     cq.enqueue(56);
     cq.enqueue(4);
@@ -120,4 +120,4 @@ int main() {
     cq.enqueue(66);
     cq.displayCQ();
     return 0;
-}  
+}*/

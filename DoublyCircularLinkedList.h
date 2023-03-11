@@ -133,7 +133,7 @@ void DoublyCircularLinkedList :: display() {
     cout<<tempNode->data<<endl;
 }
 
-int main() {
+/*int main() {
     DoublyCircularLinkedList dcll;
     dcll.insertAtFront(12);
     dcll.display();
@@ -154,4 +154,4 @@ int main() {
     Node* seachedNode = dcll.searchNode(19);
     cout<<seachedNode->data<<endl;
     return 0;
-}
+}*/

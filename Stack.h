@@ -61,14 +61,14 @@ int Stack :: top() {
 }
 
 bool Stack :: isEmpty() {
-    return topPointer != NULL;
+    return topPointer == NULL;
 }
 
 int Stack :: size() {
     return length;
 }
 
-int main() {
+/*int main() {
     Stack stack;
     cout<<stack.isEmpty()<<endl;
     stack.push(3);
@@ -79,4 +79,4 @@ int main() {
     cout<<stack.top()<<endl;
     cout<<stack.isEmpty()<<endl;
     cout<<stack.size()<<endl;
-}
+}*/
