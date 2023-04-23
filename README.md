@@ -7,6 +7,6 @@
 </div>
 
 <div align="center">
-  <img src="https://media.giphy.com/media/u1WhXLjwgcXpHJBMRM/giphy.gif" width="600" height="300"/>
+  <!--<img src="https://media.giphy.com/media/u1WhXLjwgcXpHJBMRM/giphy.gif" width="600" height="300"/>-->
+  <p>In this repo I am trying to put together basic data structures implementation from scratch in c++.<br/>If you find any issues you are free to fix them.</p>
 </div>
-
