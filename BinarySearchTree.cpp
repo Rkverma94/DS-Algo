@@ -38,9 +38,71 @@ class BinarySearchTree {
         Node* findMin(Node*);
         //Find max in a tree
         Node* findMax(Node*);
+        //Delete a node
+        Node* deleteNode(Node*, Node*);
         //print Inorder traversal
         void inOrder(Node*);
 };
+
+Node* BinarySearchTree :: deleteNode(Node* root, Node* nodeToDelete) {
+    //If root is null return null
+    if(root == NULL) return NULL;
+    //if there are no childern to node to delete
+    if(nodeToDelete->left == NULL && nodeToDelete->right == NULL) {
+        //check if node to delete is left child to it's parent
+        if(nodeToDelete->parent->left == nodeToDelete) {
+            //adjust node to parent's left child to null
+            nodeToDelete->parent->left = NULL;
+        //check if node to delete is right child to it's parent
+        } else if(nodeToDelete->parent->right == nodeToDelete) {
+            //adjust node to parent's right child to null
+            nodeToDelete->parent->right = NULL;
+        }
+        //delete node to delete
+        delete nodeToDelete;
+        //return root
+        return root;
+    }
+    //If only child exists for node to delete
+    if(nodeToDelete->left != NULL && nodeToDelete->right == NULL) {
+        Node* parentNode = nodeToDelete->parent;
+        if(parentNode->left == nodeToDelete) {
+            parentNode->left = nodeToDelete->left;
+            nodeToDelete->left->parent = parentNode;
+            delete nodeToDelete;
+            return root;
+        } 
+        if(parentNode->right == nodeToDelete) {
+            parentNode->right = nodeToDelete->left;
+            nodeToDelete->left->parent = parentNode;
+            delete nodeToDelete;
+            return root;
+        }
+    } else if(nodeToDelete->right != NULL && nodeToDelete->left == NULL) {
+        Node* parentNode = nodeToDelete->parent;
+        if(parentNode->left == nodeToDelete) {
+            parentNode->left = nodeToDelete->right;
+            nodeToDelete->right->parent = parentNode;
+            delete nodeToDelete;
+            return root;
+        }
+        if(parentNode->right == nodeToDelete) {
+            parentNode->right = nodeToDelete->right;
+            nodeToDelete->right->parent = parentNode;
+            delete nodeToDelete;
+            return root;
+        }
+    } else {
+        //if both child exists
+        Node* successorNode = findSuccessor(root, nodeToDelete);
+        int tempData = nodeToDelete->data;
+        nodeToDelete->data = successorNode->data;
+        successorNode->data = tempData;
+        return deleteNode(root, successorNode);
+    }
+    
+    return root;
+}
 
 Node* BinarySearchTree :: findMax(Node* root) {
     //if root is null return null
@@ -158,10 +220,15 @@ int main() {
     bst.root = bst.insertNode(bst.root, 4);
     bst.inOrder(bst.root);
     // clock_t start = clock();
-    Node* foundNode = bst.search(bst.root, 4);
+    Node* foundNode = bst.search(bst.root, 2);
     // clock_t end = clock();
     // double elapsed = double(end - start)/CLOCKS_PER_SEC;
-    cout<<foundNode->data<<" -parent- "<<foundNode->parent->data<<endl;
+    if(foundNode->parent != NULL) {
+        cout<<foundNode->data<<" -parent- "<<foundNode->parent->data<<endl;
+    } else {
+        cout<<foundNode->data<<" -parent- "<<endl;
+    }
+    
     // cout<<"Time taken---"<<elapsed<<endl;
     // cout<<"CLOCKS_PER_SEC---"<<CLOCKS_PER_SEC<<endl;
     Node* successorNode = bst.findSuccessor(bst.root, foundNode);
@@ -176,5 +243,7 @@ int main() {
     } else {
         cout<<"Predecessor Node does not exist. It is the minimum Node."<<endl;
     }
+    bst.root = bst.deleteNode(bst.root, foundNode);
+    bst.inOrder(bst.root);
     return 0;
 }
