@@ -48,16 +48,40 @@ void insert(vector<int> &arr, int x) {
         }
     }
 }
+
+void deleteNode(vector<int> &arr, int x) {
+    //search for the element 
+    int i;
+    for(i=0; i<arr.size(); i++) {
+        if(x == arr[i]) break;
+    }
+    swap(&arr[i], &arr[arr.size()-1]);
+    arr.pop_back();
+    cout<<"heap after deletion before heapify:"<<endl;
+    for(int idx=0; idx<arr.size(); idx++) {
+        cout<<arr[idx]<<" "<<endl;
+    }
+    //correct the heap by calling heapify
+    for(int k=(arr.size()/2) - 1; k>=0; k--) {
+        heapify(arr, k);
+    }
+}
 int main() {
     vector<int> arr;
     insert(arr, 1);
     insert(arr, 4);
     insert(arr, 2);
     insert(arr, 7);
+    insert(arr, 3);
     cout<<"heap as an array :"<<endl;
     for(int i=0; i<arr.size(); i++) {
         cout<<arr[i]<<" ";
     }
     cout<<endl;
+    deleteNode(arr, 7);
+    cout<<"Heap after heapify :"<<endl;
+    for(int i=0; i<arr.size(); i++) {
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
