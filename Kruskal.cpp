@@ -33,8 +33,8 @@ class KruskalAlgo {
             if(r1[2] < r2[2]) return true;
             return false;
         }
-        void mst(vector<vector<int>> edges) {
-            for(int i=0; i<edges.size(); i++) make(i);
+        void mst(vector<vector<int>> edges, int vertices) {
+            for(int i=0; i<vertices; i++) make(i);
             sort(edges.begin(), edges.end(), compare);
             for(int i=0; i<edges.size(); i++) {
                 cout<<edges[i][0]<<" - "<<edges[i][1]<<" with weight "<<edges[i][2]<<endl;
@@ -54,7 +54,7 @@ int main() {
     int vertices = 6;
     vector<vector<int>> edges = {{0,1,2}, {1,2,3}, {2,3,5}, {3,4,9}, {3,0,1}, {0,4,4}, {1,3,3}, {1,5,6}, {5,2,7}};
     KruskalAlgo ka(vertices);
-    ka.mst(edges);
+    ka.mst(edges, vertices);
     for(int i = 0; i<ka.mstPath.size(); i++) {
         cout<<"Path from "<<i<<" to ";
         for(auto it = ka.mstPath[i].begin(); it != ka.mstPath[i].end(); it++) {
